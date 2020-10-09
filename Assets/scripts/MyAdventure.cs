@@ -18,7 +18,7 @@ public class MyAdventure : MonoBehaviour
     void Start()
     {
         print("Hello World");
-        Terminal.WriteLine("Hoi ik zit in de terminal");
+        Terminal.WriteLine("Hello, I'm in the terminal.");
         ShowMainMenu();
     }
 
@@ -47,22 +47,24 @@ public class MyAdventure : MonoBehaviour
 
         if (currentState == States.intro)
         {
-            if (input == ("yes"))
+            if (input == "yes")
             {
                 currentState = States.walkingContinues;
-                turnAround();
+                StartTurnAround();
             }else if (input == "no")
             {
                 currentState = States.walkingContinues;
-                walkingContinues();
+                StartWalkingContinues();
             }
-        }
-
-        if (currentState == States.turnAround)
+        }else if (currentState == States.turnAround)
         {
             if (input == "next")
             {
-                walkingContinues();
+                currentState = States.walkingContinues;
+                StartWalkingContinues();
+            }else
+            {
+                Terminal.WriteLine("Wrong input!");
             }
         }
 
@@ -73,7 +75,7 @@ public class MyAdventure : MonoBehaviour
         Terminal.ClearScreen();
         Terminal.WriteLine("You just finished work and are on your way home. You know you have to walk a");
         Terminal.WriteLine("shady route but its the only fast way");
-        Terminal.WriteLine("to get to your appartment. As you startwalking you, feel a presence behind you.");
+        Terminal.WriteLine("to get to your apartment. As you start walking, you feel a presence behind you.");
         Terminal.WriteLine("You stop walking.");
         Terminal.WriteLine("");
         Terminal.WriteLine("Wanna see what's behind you?");
@@ -81,7 +83,7 @@ public class MyAdventure : MonoBehaviour
         Terminal.WriteLine("Type no to continue walking...");
     }
 
-    void turnAround()
+    void StartTurnAround()
     {
         Terminal.ClearScreen();
         Terminal.WriteLine("You turn around, but there is no one");
@@ -90,7 +92,7 @@ public class MyAdventure : MonoBehaviour
         Terminal.WriteLine("type next to continue");
     }
 
-    void walkingContinues()
+    void StartWalkingContinues()
     {
         Terminal.ClearScreen();
         Terminal.WriteLine("You start walking again. now you take out your earphones and listen to");
